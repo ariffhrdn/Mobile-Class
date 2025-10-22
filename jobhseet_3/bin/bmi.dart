@@ -11,20 +11,15 @@ void main() {
   tampilkanRiwayat(riwayat);
 }
 
+/// Fungsi khusus untuk menghitung BMI
+double bmiCalculation(double tinggiCm, double beratKg) {
+  double tinggiM = tinggiCm / 100;
+  return beratKg / (tinggiM * tinggiM);
+}
+
 void hitungBMI(double tinggiCm, double beratKg, List<Map<String, dynamic>> riwayat) {
   // Validasi input
   if (tinggiCm <= 0 || beratKg <= 0) {
-    print("❌ Input tidak valid! Tinggi dan berat harus lebih dari 0.");
-    return;
-  }
-
-  if (tinggiCm < 50 || tinggiCm > 300) {
-    print("❌ Input tinggi tidak masuk akal: $tinggiCm cm");
-    return;
-  }
-
-  if (beratKg < 10 || beratKg > 500) {
-    print("❌ Input berat tidak masuk akal: $beratKg kg");
     return;
   }
 
@@ -33,8 +28,11 @@ void hitungBMI(double tinggiCm, double beratKg, List<Map<String, dynamic>> riway
 
   // Hitung BMI
   double bmi = beratKg / (tinggiM * tinggiM);
+  // Hitung BMI menggunakan fungsi terpisah
+  bmi = bmiCalculation(tinggiCm, beratKg);
 
   // Tentukan kategori menggunakan percabangan
+  // Tentukan kategori
   String kategori;
   if (bmi < 18.5) {
     kategori = "Kurus";
